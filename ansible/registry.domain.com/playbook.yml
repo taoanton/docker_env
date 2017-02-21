@@ -1,0 +1,25 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: Installing Docker on Centos
+  hosts: vagrant1
+  sudo: True
+  tasks:
+    - name: upgrade all packages
+      yum: name=* state=latest
+    - name: Installing docker repo
+      yum:
+        name: http://mirrors.yun-idc.com/epel/6/i386/epel-release-6-8.noarch.rpm
+
+    - name: Installing docker
+      yum:
+        state: present
+        name: docker-io
+    
+    # - include: 'tasks/install/redis.yml'
+    # - include: 'tasks/install/supervisor.yml'
+    # - name: install docker repo
+      # yum: name=install http://mirrors.yun-idc.com/epel/6/i386/epel-release-6-8.noarch.rpm state=present
+    # - name: install docker
+    #   yum: docker-io
+
+

@@ -1,0 +1,6 @@
+ffmpeg*
+ffprobe
+*.tgz
+*.phar
+*.gz
+cphalcon-3.0.1/

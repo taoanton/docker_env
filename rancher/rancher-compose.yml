@@ -1,0 +1,8 @@
+nginx:
+  scale: 2
+php:
+  scale: 2
+mysql:
+  scale: 1
+redis:
+  scale: 2

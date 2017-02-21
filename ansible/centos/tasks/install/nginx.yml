@@ -1,0 +1,13 @@
+- name: NGINX | Installing NGINX repo rpm
+  yum:
+    name: http://nginx.org/packages/centos/6/x86_64/RPMS/nginx-1.10.0-1.el6.ngx.x86_64.rpm
+
+- name: NGINX | Installing NGINX
+  yum:
+    name: nginx
+    state: latest
+
+- name: NGINX | Starting NGINX
+  service:
+    name: nginx
+    state: started

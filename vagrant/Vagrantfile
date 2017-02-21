@@ -1,0 +1,39 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # Use the same key for each machine
+  config.ssh.insert_key = false
+
+  config.vm.define "master" do |master|
+    master.vm.box = "ubuntu/trusty64/docker"
+    master.vm.hostname = "master"
+    master.vm.network "private_network", ip: "192.168.33.11"
+    master.vm.synced_folder "~/www", "/www"
+    master.vm.provider "virtualbox" do |v|
+      v.memory = 2048
+      v.cpus = 2
+    end
+
+    master.vm.network "forwarded_port", guest: 80, host: 8080
+    master.vm.network "forwarded_port", guest: 8080, host: 18080
+    master.vm.network "forwarded_port", guest: 443, host: 8443
+  end
+  config.vm.define "node1" do |node1|
+    node1.vm.box = "ubuntu/trusty64/docker"
+    node1.vm.hostname = "node1"
+    node1.vm.network "private_network", ip: "192.168.33.12"
+    node1.vm.synced_folder "~/www", "/www"
+    node1.vm.network "forwarded_port", guest: 80, host: 8081
+    node1.vm.network "forwarded_port", guest: 8080, host: 18081
+    node1.vm.network "forwarded_port", guest: 443, host: 8444
+  end
+  config.vm.define "node2" do |node2|
+    node2.vm.box = "ubuntu/trusty64/docker"
+    node2.vm.hostname = "node2"
+    node2.vm.network "private_network", ip: "192.168.33.13"
+    node2.vm.synced_folder "~/www", "/www"
+    node2.vm.network "forwarded_port", guest: 80, host: 8082
+    node2.vm.network "forwarded_port", guest: 8080, host: 18082
+    node2.vm.network "forwarded_port", guest: 443, host: 8445
+  end
+end

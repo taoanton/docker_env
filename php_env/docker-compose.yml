@@ -1,0 +1,61 @@
+nginx:
+    image: dev/resty:1.11
+    container_name: php_nginx
+    ports:
+      # - "8002:80"
+      - "18000:80"
+    links:
+      - php
+    volumes:
+      - ./:/opt/sites:rw
+      - ~/www/:/www:rw # 程序目录
+      # - ./logs/nginx/:/etc/nginx/logs:rw
+      - ./conf:/opt/conf:rw
+    # command: ["/opt/deployServer.sh"] 
+
+php:
+    image: dev/php:7.1
+    container_name: php_php
+    ports:
+      - "9000:9000"
+    links:
+      - mysql
+      - redis
+    volumes:
+      - ~/www:/www:rw # 程序目录
+      - ./logs/php-fpm/:/usr/local/etc/logs
+
+mysql:
+    image: dev/mysql:5.7
+    container_name: php_mysql
+    ports:
+      - "3306:3306"
+    # volumes:
+    #   - /www/data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      # MYSQL_USER: test
+      # MYSQL_PASS: 123456
+
+redis:
+    image: dev/redis:3.2
+    container_name: php_redis
+    ports:
+      - "6379:6379"
+    environment:
+      REDIS_PORT: 6379
+
+# mongo:
+#     image: mongo:3.2
+#     container_name: php_mongo
+#     ports:
+#       - "27017:27017"      
+
+# node:
+    # container_name: php_node
+#     image: node:4.4
+#     ports:
+#       - "4000:4000"
+#       - "4002:4002"
+#       - "4003:4003"
+#       - "4004:4004"

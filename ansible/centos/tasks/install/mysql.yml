@@ -1,0 +1,19 @@
+- set_fact:
+    mysql_item:
+      - mysql55w-server
+      - mysql55w-devel
+
+- name: Remove Old Mysql
+  yum:
+    state: removed
+    name: mysql-libs
+
+- name: Mysql | Installing Mysql 5.5
+  yum: 
+    state: present
+    name: "{{mysql_item}}"
+
+- name: Mysql | Starting Mysql  
+  service:
+    name: mysqld
+    state: started

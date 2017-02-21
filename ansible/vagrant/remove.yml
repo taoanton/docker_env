@@ -1,0 +1,20 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: deploy LNMP on centos
+  hosts: vagrant1
+  sudo: True
+  tasks:
+    - set_fact:
+        removing:
+          - php*
+          - mysql*
+          - redis*
+          - supervisor*
+          - nginx*
+    - name: removing php
+      yum:
+        state: removed
+        name: "{{removing}}"
+
+
+

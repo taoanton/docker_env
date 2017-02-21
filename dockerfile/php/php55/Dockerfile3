@@ -1,0 +1,84 @@
+FROM php:5.5-fpm
+
+MAINTAINER taoanton@gmail.com
+
+# RUN apt-get update && apt-get install -y ssmtp
+
+# Install PHP extensions
+RUN requirements="libmcrypt-dev g++ libicu-dev libfreetype6-dev libjpeg62-turbo-dev libpng12-dev libsqlite3-dev libssl-dev libcurl3-dev libxml2-dev libzzip-dev php5-intl" \
+    && apt-get update && apt-get install -y $requirements && rm -rf /var/lib/apt/lists/* \
+    && docker-php-ext-install pdo_mysql \
+     mcrypt \
+     # mbstring \
+     # iconv \
+     # json \
+     # mysql \
+     mysqli \
+     # opcache \
+     phar \
+     curl \
+     ftp \
+     hash \
+     session \
+     simplexml \
+     # tokenizer \
+     # xml \
+     xmlrpc \
+     zip \
+     intl \
+     gd \
+    && docker-php-ext-enable \
+            # oci8 \
+            opcache \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && requirementsToRemove="g++" \
+    && apt-get purge --auto-remove -y $requirementsToRemove
+
+# Add custom settings
+RUN touch /usr/local/etc/php/conf.d/custom_settings.ini \
+    && echo "display_errors = Off" >> /usr/local/etc/php/conf.d/custom_settings.ini \
+    && echo "expose_php = Off" >> /usr/local/etc/php/conf.d/custom_settings.ini \
+    && echo "upload_max_filesize = 32M" >> /usr/local/etc/php/conf.d/custom_settings.ini \
+    && echo "post_max_size = 32M" >> /usr/local/etc/php/conf.d/custom_settings.ini \
+    && echo "date.timezone = "Asia/Shanghai"" >> /usr/local/etc/php/conf.d/custom_settings.ini \
+    # 用完包管理器后安排打扫卫生可以显著的减少镜像大小
+    && apt-get clean \
+    && apt-get autoclean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+
+# Install PHP extensions
+COPY redis.tgz /home/redis.tgz
+COPY xdebug.tgz /home/xdebug.tgz
+COPY xhprof.tgz /home/xhprof.tgz
+COPY swoole.tgz /home/swoole.tgz
+
+RUN pecl install /home/redis.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
+    && pecl install /home/xhprof.tgz && echo "extension=xhprof.so" > /usr/local/etc/php/conf.d/xhprof.ini \
+    && pecl install /home/swoole.tgz && echo "extension=swoole.so" > /usr/local/etc/php/conf.d/swoole.ini 
+    # && pecl install /home/xdebug.tgz && echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20131226/xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini    
+
+# PHP config
+ADD php.ini    /usr/local/etc/php/php.ini
+ADD php-fpm.conf    /usr/local/etc/php-fpm.conf
+
+# Composer
+ADD composer.phar /usr/local/bin/composer
+RUN chmod 755 /usr/local/bin/composer
+
+WORKDIR /opt
+
+RUN  chown -R www-data:www-data /opt
+
+# Write Permission
+RUN usermod -u 1000 www-data
+
+# log files
+RUN  mkdir -p /usr/local/etc/logs/
+RUN  touch /usr/local/etc/logs/fpm-access.log /usr/local/etc/logs/fpm-error.log
+RUN  touch /usr/local/etc/logs/php-slow.log
+
+
+EXPOSE 9000
+VOLUME ["/opt"]
+CMD ["php-fpm"]

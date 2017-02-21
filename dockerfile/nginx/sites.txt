@@ -1,0 +1,2 @@
+home.app=/Users/anton/www
+upgrade.app=/Users/anton/www/now/app.upgrade/src/public

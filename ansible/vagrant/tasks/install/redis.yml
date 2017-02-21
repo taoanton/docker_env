@@ -1,0 +1,21 @@
+- name: Installing epel repo
+  yum:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
+
+- name: Installing webtatic repo
+  yum:
+    name: https://mirror.webtatic.com/yum/el6/latest.rpm
+
+- set_fact:
+    mysql_item:
+      - mysql55w-server
+      - mysql55w-devel
+
+- name: Mysql | Installing Mysql 5.5
+  yum: state:present
+  name: "{{mysql_item}}"
+
+- name: Mysql | Starting Mysql  
+  service:
+    name: mysqld
+    started: started

@@ -1,0 +1,1 @@
+- supervisorctl: name=my_app state=started

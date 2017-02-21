@@ -1,0 +1,40 @@
+[06-Jan-2017 10:15:13 Asia/Shanghai] PHP Fatal error:  Uncaught ReflectionException: Class log does not exist in /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php:741
+Stack trace:
+#0 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(741): ReflectionClass->__construct('log')
+#1 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(631): Illuminate\Container\Container->build('log', Array)
+#2 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(674): Illuminate\Container\Container->make('log', Array)
+#3 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(842): Illuminate\Foundation\Application->make('log')
+#4 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(805): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /www/now/packages/laravelpackages/vendor/laravel/f in /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 741
+[06-Jan-2017 10:21:36 Asia/Shanghai] PHP Fatal error:  Uncaught ReflectionException: Class log does not exist in /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php:741
+Stack trace:
+#0 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(741): ReflectionClass->__construct('log')
+#1 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(631): Illuminate\Container\Container->build('log', Array)
+#2 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(674): Illuminate\Container\Container->make('log', Array)
+#3 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(842): Illuminate\Foundation\Application->make('log')
+#4 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(805): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /www/now/packages/laravelpackages/vendor/laravel/f in /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 741
+[06-Jan-2017 10:26:40 Asia/Shanghai] PHP Fatal error:  Uncaught ReflectionException: Class log does not exist in /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php:741
+Stack trace:
+#0 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(741): ReflectionClass->__construct('log')
+#1 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(631): Illuminate\Container\Container->build('log', Array)
+#2 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(674): Illuminate\Container\Container->make('log', Array)
+#3 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(842): Illuminate\Foundation\Application->make('log')
+#4 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(805): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /www/now/packages/laravelpackages/vendor/laravel/f in /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 741
+[06-Jan-2017 10:27:21 Asia/Shanghai] PHP Fatal error:  Uncaught ReflectionException: Class log does not exist in /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php:741
+Stack trace:
+#0 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(741): ReflectionClass->__construct('log')
+#1 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(631): Illuminate\Container\Container->build('log', Array)
+#2 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(674): Illuminate\Container\Container->make('log', Array)
+#3 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(842): Illuminate\Foundation\Application->make('log')
+#4 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(805): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /www/now/packages/laravelpackages/vendor/laravel/f in /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 741
+[06-Jan-2017 10:27:30 Asia/Shanghai] PHP Fatal error:  Uncaught ReflectionException: Class log does not exist in /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php:741
+Stack trace:
+#0 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(741): ReflectionClass->__construct('log')
+#1 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(631): Illuminate\Container\Container->build('log', Array)
+#2 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(674): Illuminate\Container\Container->make('log', Array)
+#3 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(842): Illuminate\Foundation\Application->make('log')
+#4 /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php(805): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /www/now/packages/laravelpackages/vendor/laravel/f in /www/now/packages/laravelpackages/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 741

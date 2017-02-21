@@ -1,0 +1,15 @@
+docker.app=/www
+laravel5.app=/www/now/packages/laravel53-2/public
+laravel53.app=/www/now/packages/laravel53/public
+laravel54.app=/www/now/packages/laravel54/public
+laravel5.dev=/www/now/packages/laravel53-2/public
+laravelpackage.dev=/www/now/packages/laravelpackages/public
+laravelpackages.dev=/www/now/packages/laravelpackages/public
+a.laravelpackages.dev=/www/now/packages/laravelpackages/public
+b.laravelpackages.dev=/www/now/packages/laravelpackages/public
+4s.app=/www/chehejia/chehejia_4s/public
+chj-vue.app=/www/chehejia/chehejia_vue/public
+chj-oa.app=/www/chehejia/chehejia_oa/public
+quickstart.app=/www/now/packages/quickstart/public
+eleme.app=/www/vue/eleme-lumen/public
+

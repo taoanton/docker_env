@@ -1,0 +1,29 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: deploy LNMP on centos
+  hosts: vagrant1
+  sudo: True
+  vars:
+    mysql_root_pass:123456
+  tasks:
+    # - name: upgrade all packages
+    #   yum: name=* state=latest
+    - name: Installing epel repo
+      yum:
+        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
+
+    - name: Installing webtatic repo
+      yum:
+        name: https://mirror.webtatic.com/yum/el6/latest.rpm
+    - include: 'tasks/install/nginx.yml'
+    - include: 'tasks/install/mysql.yml'
+    - include: 'tasks/install/php.yml'
+    
+    # - include: 'tasks/install/redis.yml'
+    # - include: 'tasks/install/supervisor.yml'
+    # - name: install docker repo
+      # yum: name=install http://mirrors.yun-idc.com/epel/6/i386/epel-release-6-8.noarch.rpm state=present
+    # - name: install docker
+    #   yum: docker-io
+
+

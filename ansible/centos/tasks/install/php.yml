@@ -1,0 +1,43 @@
+# - name: PHP | Installing epel repo
+#   yum:
+#     name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
+
+# - name: PHP | Installing webtatic repo
+#   yum:
+#     name: https://mirror.webtatic.com/yum/el6/latest.rpm
+
+- set_fact:
+    ext_item:
+      - php55w
+      - php55w-common
+      - php55w-cli
+      - php55w-devel
+      - php55w-fpm
+      - php55w-gd
+      - php55w-mbstring
+      - php55w-mcrypt
+      - php55w-mysql
+      - php55w-odbc
+      - php55w-pdo
+      - php55w-pear
+      - php55w-pecl-igbinary
+      - php55w-xml
+      - php55w-xmlrpc
+      - php55w-opcache
+      - php55w-intl
+      - php55w-pecl-memcache
+      - php55w-pecl-imagick
+      - php55w-pecl-imagick-devel
+      - php55w-soap
+      - php55w-pecl-redis
+      - php55w-ldap
+
+- name: PHP | Installing PHP
+  yum:
+    state: present 
+    name: "{{ext_item}}"      
+      
+- name: PHP | Starting PHP
+  service:
+    name: php-fpm
+    state: started

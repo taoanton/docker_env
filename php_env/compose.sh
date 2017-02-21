@@ -2,7 +2,13 @@
 set -e
 
 chdir() {
-    cd /www/docker/php_env
+    if [ "$0" == "./compose.sh" ]
+    then
+        cd `pwd`
+    else
+        cd /www/docker/php_env
+    fi
+    
 }
 up() {
     chdir

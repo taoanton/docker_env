@@ -65,7 +65,7 @@ RUN touch /usr/local/etc/php/conf.d/custom_settings.ini \
     && echo "upload_max_filesize = 128M" >> /usr/local/etc/php/conf.d/custom_settings.ini \
     && echo "post_max_size = 128M" >> /usr/local/etc/php/conf.d/custom_settings.ini \
     && echo "date.timezone = "Asia/Shanghai"" >> /usr/local/etc/php/conf.d/custom_settings.ini \
-    # ÓÃÍê°ü¹ÜÀíÆ÷ºó°²ÅÅ´òÉ¨ÎÀÉú¿ÉÒÔÏÔÖøµÄ¼õÉÙ¾µÏñ´óÐ¡
+    # Ã“ÃƒÃÃªÂ°Ã¼Â¹ÃœÃ€Ã­Ã†Ã·ÂºÃ³Â°Â²Ã…Ã…Â´Ã²Ã‰Â¨ÃŽÃ€Ã‰ÃºÂ¿Ã‰Ã’Ã”ÃÃ”Ã–Ã¸ÂµÃ„Â¼ÃµÃ‰Ã™Â¾ÂµÃÃ±Â´Ã³ÃÂ¡
     && apt-get clean \
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -83,11 +83,12 @@ RUN pecl install swoole-2.0.5 && echo "extension=swoole.so" > /usr/local/etc/php
 # && rm -rf /home/cphalcon
 
 # Install Oracle Instantclient
-RUN mkdir /opt/oracle \
-    && cd /opt/oracle \
-    && wget http://repo.domain.com/pkg/instantclient-basic-linux.x64-12.1.0.2.0.zip \
+COPY instantclient-basic-linux.x64-12.1.0.2.0.zip /opt/oracle/
+COPY instantclient-sdk-linux.x64-12.1.0.2.0.zip /opt/oracle/
+RUN cd /opt/oracle \
+    # && wget http://repo.domain.com/pkg/instantclient-basic-linux.x64-12.1.0.2.0.zip \
     # && wget http://download.oracle.com/otn/linux/instantclient/121020/instantclient-basic-linux.x64-12.1.0.2.0.zip \
-    && wget http://repo.domain.com/pkg/instantclient-sdk-linux.x64-12.1.0.2.0.zip \
+    # && wget http://repo.domain.com/pkg/instantclient-sdk-linux.x64-12.1.0.2.0.zip \
     # && http://download.oracle.com/otn/linux/instantclient/121020/instantclient-sdk-linux.x64-12.1.0.2.0.zip \
     && unzip /opt/oracle/instantclient-basic-linux.x64-12.1.0.2.0.zip -d /opt/oracle \
     && unzip /opt/oracle/instantclient-sdk-linux.x64-12.1.0.2.0.zip -d /opt/oracle \
@@ -100,7 +101,7 @@ RUN mkdir /opt/oracle \
     && docker-php-ext-install pdo_oci \
     && docker-php-ext-enable oci8
 
-# clone zephir ²¢°²×°
+# clone zephir Â²Â¢Â°Â²Ã—Â°
 RUN cd /root && \
         git clone https://github.com/phalcon/zephir && \
         cd zephir && \

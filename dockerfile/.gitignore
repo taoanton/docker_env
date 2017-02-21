@@ -1,3 +1,4 @@
 logs/
 *.gz
 .DS_Store
+*.zip

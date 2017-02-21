@@ -21,16 +21,23 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 #       apt-key add -
 
 # Install Oracle Instantclient
-RUN mkdir /opt/oracle \
-    && cd /opt/oracle \
-    && wget http://repo.domain.com/pkg/instantclient-basic-linux.x64-12.1.0.2.0.zip \
-    && wget http://repo.domain.com/pkg/instantclient-sdk-linux.x64-12.1.0.2.0.zip \
+COPY instantclient-basic-linux.x64-12.1.0.2.0.zip /opt/oracle/
+COPY instantclient-sdk-linux.x64-12.1.0.2.0.zip /opt/oracle/
+RUN cd /opt/oracle \
+    # && wget http://repo.domain.com/pkg/instantclient-basic-linux.x64-12.1.0.2.0.zip \
+    # && wget http://download.oracle.com/otn/linux/instantclient/121020/instantclient-basic-linux.x64-12.1.0.2.0.zip \
+    # && wget http://repo.domain.com/pkg/instantclient-sdk-linux.x64-12.1.0.2.0.zip \
+    # && http://download.oracle.com/otn/linux/instantclient/121020/instantclient-sdk-linux.x64-12.1.0.2.0.zip \
     && unzip /opt/oracle/instantclient-basic-linux.x64-12.1.0.2.0.zip -d /opt/oracle \
     && unzip /opt/oracle/instantclient-sdk-linux.x64-12.1.0.2.0.zip -d /opt/oracle \
     && ln -s /opt/oracle/instantclient_12_1/libclntsh.so.12.1 /opt/oracle/instantclient_12_1/libclntsh.so \
     && ln -s /opt/oracle/instantclient_12_1/libclntshcore.so.12.1 /opt/oracle/instantclient_12_1/libclntshcore.so \
     && ln -s /opt/oracle/instantclient_12_1/libocci.so.12.1 /opt/oracle/instantclient_12_1/libocci.so \
-    && rm -rf /opt/oracle/*.zip
+    && rm -rf /opt/oracle/*.zip \
+    && echo 'instantclient,/opt/oracle/instantclient_12_1/' | pecl install oci8-2.1.1 \
+    && docker-php-ext-configure pdo_oci --with-pdo-oci=instantclient,/opt/oracle/instantclient_12_1,12.1 \
+    && docker-php-ext-install pdo_oci \
+    && docker-php-ext-enable oci8
 
 
 # Install PHP extensions deps
